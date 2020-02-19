@@ -1,19 +1,67 @@
+/*@import url(https://technojo4.com/proxy.php?mime=text/css&url=https://raw.githubusercontent.com/joe27g/Discord-Theme/v2/theme.css);*/
+/*@import url(https://raw.githubusercontent.com/joe27g/Discord-Theme/v2/theme.css);*/
 @import url(https://enhanceddiscord.com/theme.css);
 
 .theme-dark {
-    --bg: url(https://i.imgur.com/2WHzMbs.jpg);
-    --bg-overlay: rgba(0, 0, 0, 0.8);
-    --accent: #900;
-    --accent-bright: #f00;
-    --accent-back: rgba(255, 0, 0, 0.15);
-    --accent-back-bright: rgba(255, 0, 0, 0.4);
-    --icon-color: rgba(250, 166, 26, 0.5);
-    --link-color: #faa61a;
-    --link-color-hover: #fad61a;
+    --bg: url(https://cdn.discordapp.com/attachments/386677483795251200/444299818962255885/coolbg.png);
+    --bg-overlay: rgba(0, 0, 0, 0.9);
+    --accent: #4321ff;
+    --accent-bright: #4321ff;
+    --accent-back: rgba(67, 33, 255, 0.15);
+    --accent-back-bright: rgba(67, 33, 255, 0.4);
+    --icon-color: rgba(67, 33, 255, 0.5);
+    --link-color: #4321ff;
+    --link-color-hover: #5432ff;
     --popup-background: #222;
     --popup-highlight: #333;
-    --unread-color: var(--accent-bright);
+    --unread-color: #4321ff;
     --typing-height: 25px;
     --gift-button: none;
-    --gif-picker: none;
+    --gif-picker: flex;
+}
+
+/* ΣndPwn³ */
+.wordmark-2iDDfm svg { visibility: hidden; }
+.wordmark-2iDDfm { background-image: none !important; }
+.wordmark-2iDDfm::before {
+    content: "ΣndPwn³";
+    height: auto;
+    line-height: 80%;
+    text-align: center;
+
+    background: linear-gradient(to bottom right,#0ff,#f0f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    font-size: 16pt;
+    font-weight: 500;
+    font-family: sans-serif;
+
+    text-transform: none;
+}
+
+
+/* Fixes */
+.embedMedia-1guQoW { border-radius: 0; }
+.message-2qnXI6 .embedMedia-1guQoW { border-radius: 2px !important; }
+.container-3baos1 { border-top: 0; }
+.guilds-1SWlCJ { bottom: 0px; }
+.wrapper-1Rf91z { margin-bottom: 0; }
+.scroller-2TZvBN { contain: size; }
+.scroller-2TZvBN > .listItem-2P_4kh > .listItemWrapper-3X98Pc,
+.scroller-2TZvBN > .tutorialContainer-SGrQ1h { visibility: hidden; }
+
+.expandedFolderBackground-2sPsd-:not(.collapsed-1GMuSb) + .listItem-2P_4kh > div[class=""] {
+    background: transparent;
+}
+
+
+/* Slide */
+div[class*=message] div[class*=markup][class*=isSending] {
+    animation:messages-slide-up 200ms cubic-bezier(.3,0,0,1),opacity 50ms ease;
+}
+@keyframes messages-slide-up {
+    from {
+        transform: translate(0,5px);
+    }
 }
