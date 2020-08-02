@@ -12,15 +12,11 @@ const _patch = f => {
     if (typeof f !== "function") return f;
     const of = f.toString(); var nf;
     ctr.replacements.forEach(([s, r]) => nf = of.replace(s, r));
-    if (of != nf) { 
-        console.log('Patched', nf);
-        f = eval("("+nf+")");
-    }
+    if (of != nf) f = eval("("+nf+")");
     return f;
 };
 
 ctr.patch = mods => {
-    console.log(mods);
     return Array.isArray(mods)
         ? mods.map(_patch)
         : Object.fromEntries(Object.entries(mods)
