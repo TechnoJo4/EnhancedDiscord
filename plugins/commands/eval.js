@@ -5,9 +5,9 @@ module.exports = {
         try {
             const ret = eval(e.content);
             if (ret !== undefined)
-                $cmds.fakeMsg(`\`${ret.toString()}\``, "EnhancedDiscord");
+                $cmds.fakeMsg(`\`${ret.toString()}\``);
         } catch (err) {
-            $cmds.fakeMsg(`\`\`\`\nError in /eval: ${err}\n${err.stack}\n\`\`\``, "EnhancedDiscord");
+            $cmds.fakeMsg(`\`\`\`\nError in /eval: ${err}\n${err.stack}\n\`\`\``);
         }
         e.content = "";
     }

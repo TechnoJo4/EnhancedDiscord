@@ -24,8 +24,8 @@ const $cmds = _c = {
         msg.author.id = '1';
         msg.author.bot = true;
         msg.author.discriminator = '0000';
-        msg.author.avatar = n || 'EndPwn';
-        msg.author.username = n || 'EndPwn';
+        msg.author.avatar = n || 'EnhancedDiscord';
+        msg.author.username = n || 'EnhancedDiscord';
         if (typeof e !== "string")
             Object.entries(e).forEach(([k,v]) => msg[k] = v);
 
