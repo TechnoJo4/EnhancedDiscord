@@ -9,6 +9,8 @@ if (currentWindow.__preload) require(currentWindow.__preload);
 //Get inject directory
 if (!process.env.injDir) process.env.injDir = __dirname;
 
+require(path.join(process.env.injDir, 'ctr.js'))
+
 //set up global functions
 const c = {
     log: function(msg, plugin) {
@@ -94,7 +96,7 @@ process.once('loaded', async () => {
     const pluginFiles = fs.readdirSync(path.join(process.env.injDir, 'plugins'));
     const plugins = {};
     for (const i in pluginFiles) {
-        if (!pluginFiles[i].endsWith('.js') || pluginFiles[i].endsWith('.plugin.js')) continue;
+        if (!pluginFiles[i].endsWith('.js') || pluginFiles[i].endsWith('.plugin.js') || pluginFiles[i].endsWith('.ctr.js')) continue;
         let p;
         const pName = pluginFiles[i].replace(/\.js$/, '');
         try {
