@@ -1,5 +1,5 @@
-// ctr - webpack constructor .replace-er
-// somewhat inspired from EndPwn/EPAPI's crispr
+// ctr - webpack module constructor .replace-er
+// somewhat inspired by EndPwn/EPAPI's crispr
 // *almost* no code stolen from crispr (only a few lines)
 
 const fs = require('fs');
@@ -10,9 +10,16 @@ const _should = mods => (Array.isArray(mods) ? mods : Object.values(mods)).index
 
 const _patch = f => {
     if (typeof f !== "function") return f;
-    const of = f.toString(); var nf;
-    ctr.replacements.forEach(([s, r]) => nf = of.replace(s, r));
-    if (of != nf) f = eval("("+nf+")");
+    let of = f.toString(); let nf = of;
+    let patched = false;
+    ctr.replacements.forEach(([s, r]) => {
+        nf = nf.replace(s, r);
+        if (nf != of) {
+            patched = true; of = nf;
+            console.log(`Patch '${r}' applied.`);
+        }
+    });
+    if (patched) f = eval("("+nf+")");
     return f;
 };
 
