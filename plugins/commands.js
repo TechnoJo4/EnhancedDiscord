@@ -7,6 +7,30 @@ const _completes = [];
 
 const Plugin = require('../plugin');
 
+const _chan = findModules('getChannelId')[2];
+const chan = () => _chan.getChannelId();
+
+let _c; // "standard library" for commands.
+const $cmds = _c = {
+    createFakeMsg: (e, n) => {
+        const content = typeof e === "string" ? e : e.content;
+        const msg = EDApi.findModule("createBotMessage").createBotMessage(chan(), content);
+        msg.state = 'SENT';
+        msg.author.id = '1';
+        msg.author.bot = true;
+        msg.author.discriminator = '0000';
+        msg.author.avatar = n || 'EndPwn';
+        msg.author.username = n || 'EndPwn';
+        if (typeof e !== "string")
+            Object.entries(e).forEach(([k,v]) => msg[k] = v);
+
+        return msg;
+    },
+    fakeMsg: (e, n) => {
+        findModule('receiveMessage').receiveMessage(chan(), _c.createFakeMsg(e, n));
+    },
+};
+
 let self; self =
 module.exports = new Plugin({
     name: 'Commands',
@@ -15,7 +39,13 @@ module.exports = new Plugin({
     color: '#ff00ff',
 
     load: async () => {
+        EDApi.findModule("BOT_AVATARS").BOT_AVATARS.EndPwn =
+                "https://cdn.discordapp.com/avatars/350987786037493773/ae0a2f95898cfd867c843c1290e2b917.png";
+        EDApi.findModule("BOT_AVATARS").BOT_AVATARS.EnhancedDiscord =
+                "https://cdn.discordapp.com/icons/415246389287583755/d838818a592306b7ee29d92c9f568ef5.png?size=128";
+
         while (!window['_CMD_ACTIONS'] || !window['_CMD_AUTOCOMPLETE']) await self.sleep(500);
+        window["$cmds"] = $cmds;
 
         self.log('Found command modules. Injecting commands.');
         fs.readdirSync(cmds_folder).forEach(name => {
