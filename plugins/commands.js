@@ -8,10 +8,15 @@ const _completes = [];
 const Plugin = require('../plugin');
 
 const _chan = findModules('getChannelId')[2];
+const _guild = findModules('getGuildId')[1];
 const chan = () => _chan.getChannelId();
+const guild = () => _guild.getGuildId();
 
 let _c; // "standard library" for commands.
 const $cmds = _c = {
+    channel: chan,
+    guild: guild,
+
     createFakeMsg: (e, n) => {
         const content = typeof e === "string" ? e : e.content;
         const msg = EDApi.findModule("createBotMessage").createBotMessage(chan(), content);
